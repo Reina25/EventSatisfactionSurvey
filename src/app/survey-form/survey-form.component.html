@@ -1,0 +1,254 @@
+<div *ngIf="submitted" class="alert alert-success">
+    <h5><i class="icon fas fa-check"></i> Form Submitted!</h5>
+    <h5> Thank you for your response.</h5>
+  
+    <div class="row pb-2">
+      <h6 class="col-3">Redirecting you to iConnect...</h6>
+      <div class="spinner-border " role="status">
+      </div>
+    </div>
+  
+  </div>
+  
+  <div [class.d-none]="submitted" class="card card-primary">
+    <div [class.d-none]="submitted" class="card-header"> {{eventName}} Feedback Form</div>
+    <div class="main-area">
+      <div class="content-area">
+  
+        <div class="container">
+          <div class="row">
+  
+            <div class="pt-5 px-4">
+  
+              <h3 [class.d-none]="submitted" class="text-primary ">Event Satisfaction</h3>
+  
+              <small [class.d-none]="submitted">Hi, {{studentFirstName}}. When you submit this form, the owner will see your
+                name and email address.</small>
+  
+            </div>
+  
+  
+            <div [class.d-none]="submitted" id="form" class="form-area col-11 mx-4 py-3">           
+  
+  
+  
+              <form #surveyForm="ngForm" (ngSubmit)="onSubmit(surveyForm.value)">
+  
+            
+  
+                <p> <span style="color: #ff0000; font-size: large;">* &nbsp;</span>Required</p>
+  
+  
+                <div [class.d-none]="!noShow">
+                  <div class="form-group">
+                    <label for="">StudentID</label>
+                    <input type="text" name="studentID" [(ngModel)]="userModel.studentID" #studentID="ngModel"
+                      class="form-control " readonly ngModel>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">EventID</label>
+                    <input type="text" name="eventID" [(ngModel)]="userModel.eventID" #eventID="ngModel"
+                      class="form-control " readonly ngModel>
+  
+  
+                  </div>
+                </div>
+  
+             
+  
+                <div id="question 1">
+                  <label for="">{{q1}}<span
+                      style="color: #ff0000; font-size: large;">* &nbsp;</span></label>
+                     
+  
+  
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                      name="q1" id="verysat1" value="Very satisfied"
+                      #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched"   required  [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
+                    <label class="form-check-label" for="verysat1">
+                      Very satisfied
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                      name="q1" id="sat1" value="Satisfied"
+                      #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched"  required [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
+                    <label class="form-check-label" for="sat1">
+                      Satisfied
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                    name="q1" id="neu1" value="Neutral"
+                      #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched"  required [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
+                    <label class="form-check-label" for="neu1">
+                      Neutral
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                    name="q1" id="unsat1" value="Unsatisfied"
+                      #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched"  required [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
+                    <label class="form-check-label" for="unsat1">
+                      Unsatisfied
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                    name="q1" id="veryunsat1" value="Very Unsatisfied" 
+                      #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched" required [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
+                    <label class="form-check-label" for="veryunsat1">
+                      Very Unsatisfied
+                    </label>
+                  </div>
+                  <div class=" pb-3">
+                    <small class="text-danger " [class.d-none]="radios1.valid || radios1.untouched">This question is
+                      required</small>
+  
+                  </div>
+                </div>
+  
+                <div id="question 2">
+                  <label for="">{{q2}}<span
+                      style="color: #ff0000; font-size: large;">* &nbsp;</span></label>
+                     
+  
+  
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                    name="q2" id="verysat2" value="Very satisfied"
+                      #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required  [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
+                    <label class="form-check-label" for="verysat2">
+                      Very satisfied
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                      name="q2" id="sat2" value="Satisfied"
+                      #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required  [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
+                    <label class="form-check-label" for="sat2">
+                      Satisfied
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                      name="q2" id="neu2" value="Neutral"
+                      #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required  [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
+                    <label class="form-check-label" for="neu2">
+                      Neutral
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                      name="q2" id="unsat2" value="Unsatisfied"
+                      #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required  [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
+                    <label class="form-check-label" for="unsat2">
+                      Unsatisfied
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                      name="q2" id="veryunsat2" value="Very Unsatisfied" 
+                      #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required  [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
+                    <label class="form-check-label" for="veryunsat2">
+                      Very Unsatisfied
+                    </label>
+                  </div>
+                  <div class=" pb-3">
+                    <small class="text-danger " [class.d-none]="radios2.valid || radios2.untouched">This question is
+                      required</small>
+  
+                  </div>
+                </div>
+  
+                
+  
+                <div id="question 3">
+                  <label for="">{{q3}}<span
+                      style="color: #ff0000; font-size: large;">* &nbsp;</span></label>
+  
+  
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3"
+                      id="recommendyes" value="yes" #radios3="ngModel"
+                      [class.is-invalid]="radios3.invalid && radios3.touched" required  [(ngModel)]="selectedOption3" (ngModelChange)="saveSelection3($event)">
+                    <label class="form-check-label" for="recommendyes">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3"
+                      id="recommendno" value="no" #radios3="ngModel"
+                      [class.is-invalid]="radios3.invalid && radios3.touched" required  [(ngModel)]="selectedOption3" (ngModelChange)="saveSelection3($event)">
+                    <label class="form-check-label" for="recommendno">
+                      No
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3"
+                      id="recommendmaybe" value="maybe" #radios3="ngModel"
+                      [class.is-invalid]="radios3.invalid && radios3.touched" required  [(ngModel)]="selectedOption3" (ngModelChange)="saveSelection3($event)">
+                    <label class="form-check-label" for="recommendmaybe">
+                      Maybe
+                    </label>
+                  </div>
+                  <div class=" pb-3">
+                    <small class="text-danger " [class.d-none]="radios3.valid || radios3.untouched">This question is
+                      required</small>
+  
+                  </div>
+                </div>
+  
+                
+  
+                <div id="question 4">
+                  <div class="form-group">
+                    <label>{{q4}}<span style="color: #ff0000; font-size: large;">* &nbsp;</span></label>
+                    <input type="text" name="q4" #suggestions="ngModel"
+                           [class.is-invalid]="suggestions.invalid && suggestions.touched" 
+                           class="form-control" [(ngModel)]="selectedOption4" (ngModelChange)="saveSelection4($event)" required>
+                    <small class="text-danger" [class.d-none]="suggestions.untouched || suggestions.valid">This question is required</small>
+                  </div>
+                </div>
+  
+  
+  
+                <div class="row ">
+                  <div class="col-1 pe-5">
+                    <button class="btn btn-primary" routerLink="/studentinfo" type="button">Back</button>
+  
+                  </div>
+                  &nbsp;
+  
+                  <div class="px-3 col-3">
+                    <button *ngIf="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid" class="btn btn-danger"
+                      type="submit">Missing Fields</button>
+                    <button [class.d-none]="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid"
+                      class="btn btn-success" type="submit">Submit</button>
+  
+                  </div>
+  
+  
+  
+  
+  
+                </div>
+  
+  
+  
+  
+              </form>
+  
+            </div>
+  
+  
+  
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>
