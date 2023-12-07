@@ -38,12 +38,12 @@ export class CheckInfoComponent implements OnInit {
 
   ngOnInit() {
 
-
+  // to clear any saved data for new data to come 
     window.sessionStorage.clear();
 
     window.localStorage.clear();
-   
 
+    // set student and event data from url parameters
     this.studentID=this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));
 
     this.eventID=this.eventService.setEventID(this.route.snapshot.queryParamMap.get("eventID"));
@@ -58,7 +58,7 @@ export class CheckInfoComponent implements OnInit {
 
    this.campus= this.eventService.setCampus(this.route.snapshot.queryParamMap.get("campus")); 
 
-
+  // save student and event data from the set data above
    this.studentID=this.eventService.saveStudentID();
 
    this.eventID=this.eventService.saveEventID();
@@ -73,7 +73,7 @@ export class CheckInfoComponent implements OnInit {
 
    this.campus=this.eventService.saveCampus();
 
-
+  // undergo the md5 hashing
    const completeData : string= this.eventService.getStudentID()+this.eventService.getEventID()+this.salt;
     
 

@@ -8,10 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class EventServiceService {
 
-  constructor(private http: HttpClient) { }
-
-
-
+  constructor(private http: HttpClient) {}
 
   eventID:string;
 
@@ -142,7 +139,7 @@ export class EventServiceService {
     console.log(User);
     const headers = new HttpHeaders({'myHeader': 'BAUEventSurvey'});
     this.http.post<{name: string}>(
-        'https://eventsurvey-a3ee1-default-rtdb.firebaseio.com/user.json', 
+        'https://eventsurvey-a3ee1-default-rtdb.firebaseio.com/responses/students.json', 
         User, {headers: headers})
         .subscribe((res) => {
             console.log(res);

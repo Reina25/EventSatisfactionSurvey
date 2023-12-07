@@ -1,6 +1,6 @@
 import { EventServiceService } from "../service/event-service.service";
 
-export class User {
+export class Responses {
 
     public studentID =this.eventservice.getSavedStudentID();
     public eventID =this.eventservice.getSavedEventID();

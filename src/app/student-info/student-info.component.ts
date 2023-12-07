@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../model/user';
 import { EventServiceService } from '../service/event-service.service';
+import { Responses } from '../model/responses';
 
 @Component({
   selector: 'app-student-info',
@@ -30,13 +30,15 @@ export class StudentInfoComponent implements OnInit {
 
   incrementedDate:any;
 
-  userModel = new User(this.eventService,'','','','');
+  userModel = new Responses(this.eventService,'','','','');
   
 
 
 
   ngOnInit() {
     
+
+    // get the saved student and event data from the saved data from local storage
     this.studentID=this.eventService.getSavedStudentID();
 
     this.studentName = this.eventService.getSavedStudentName();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { User } from '../model/user';
 import { EventServiceService } from '../service/event-service.service';
+import { Responses } from '../model/responses';
 
 @Component({
   selector: 'app-survey-form',
@@ -20,7 +20,7 @@ export class SurveyFormComponent implements OnInit {
   
   submitted:boolean=false;
 
-  userModel = new User(this.eventService,'','','','');
+  userModel = new Responses(this.eventService,'','','','');
 
   surveyForm: NgForm;
 
@@ -50,12 +50,17 @@ export class SurveyFormComponent implements OnInit {
 
 ngOnInit() {
 
+  // get saved student and event data from saved data in local storage
   this.studentName=this.eventService.getSavedStudentName();
-
-  this.studentFirstName=this.studentName.substring(0, this.studentName.indexOf(' '));
 
   this.eventName=this.eventService.getSavedEventName();
 
+
+  // get the first name only from full name of student
+  this.studentFirstName=this.studentName.substring(0, this.studentName.indexOf(' '));
+
+
+ // save student response of survey (if changed)
   this.savedOption1 = sessionStorage.getItem('selectedOption1');
 
   if (this.savedOption1) {
@@ -92,7 +97,7 @@ ngOnInit() {
 
 
 
-
+// save student response of survey (if refreshed or traversed from page to page)
 saveSelection1(newValue: string) {
   this.selectedOption1=newValue;
   sessionStorage.setItem('selectedOption1', this.selectedOption1);
@@ -111,7 +116,7 @@ saveSelection4(newValue: string) {
   sessionStorage.setItem('selectedOption4', this.selectedOption4);
 }
 
-
+// submit student response and redirect to iConnect once done
   onSubmit(User: {studentID:string, eventID:string, radios1:string,radios2:string,radios3:string,suggestions: string}){
     this.submitted=true;
    
@@ -122,5 +127,6 @@ saveSelection4(newValue: string) {
     }, 5000); 
 
   }
+
 
 }
