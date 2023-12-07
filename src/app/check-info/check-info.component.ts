@@ -10,6 +10,11 @@ import { Md5 } from 'ts-md5';
 })
 export class CheckInfoComponent implements OnInit {
 
+  // set data from url
+  // get data that is set and save it in local storage
+  // get saved data that is saved in local storage
+  // display it where necessary
+
   md5 = new Md5();
 
   salt:string="salt";

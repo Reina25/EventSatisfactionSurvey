@@ -33,6 +33,7 @@ export class EventServiceService {
   surveyForm: NgForm;
 
 
+  // sets and gets for student and event data
   setEventID(eventID: string) {
     this.eventID = eventID;
     return eventID;
@@ -124,16 +125,15 @@ export class EventServiceService {
   } 
 
 
-
+  // increment event date by number of days (deadline for submitting the survey response)
   addDays(date, days) {
-   
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
   }
 
 
-  
+  // submit student's response to database
   onSubmit(User: {studentID:string, eventID:string, radios1:string,radios2:string, radios3:string,suggestions: string}){
 
     console.log(User);
@@ -145,6 +145,8 @@ export class EventServiceService {
             console.log(res);
         });
       }
+
+  // save and get saved student and event data from local storage
 
       saveStudentName(){
        return localStorage.setItem('studentName',this.getStudentName());

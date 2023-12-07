@@ -37,8 +37,7 @@ export class StudentInfoComponent implements OnInit {
 
   ngOnInit() {
     
-
-    // get the saved student and event data from the saved data from local storage
+    // get saved student and event data from local storage
     this.studentID=this.eventService.getSavedStudentID();
 
     this.studentName = this.eventService.getSavedStudentName();
