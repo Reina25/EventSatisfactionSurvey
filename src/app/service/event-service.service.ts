@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
+import { Responses } from '../model/responses';
 
 @Injectable({
   providedIn: 'root'
@@ -139,7 +140,7 @@ export class EventServiceService {
     console.log(User);
     const headers = new HttpHeaders({'myHeader': 'BAUEventSurvey'});
     this.http.post<{name: string}>(
-        'https://eventsurvey-a3ee1-default-rtdb.firebaseio.com/responses/students.json', 
+        'https://eventsurvey-a3ee1-default-rtdb.firebaseio.com/responses.json', 
         User, {headers: headers})
         .subscribe((res) => {
             console.log(res);
@@ -246,6 +247,42 @@ export class EventServiceService {
         
       //     })
       // }
+
+      fetchStudentData(){
+        const header = new HttpHeaders()
+  
+        return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/'+this.getSavedStudentID()+'.json', 
+        {'headers' : header,})
+        .pipe(map((res) => {
+            const studentPersonalData = [];
+            for(const key in res){
+                if(res.hasOwnProperty(key)){
+                  studentPersonalData.push({...res[key], id: key})
+                }
+            }
+            return studentPersonalData;
+        }))
+       
+    }
+
+
+    fetchEventData(){
+      const header = new HttpHeaders()
+
+      return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/'+this.getSavedEventID()+'.json', 
+      {'headers' : header,})
+      .pipe(map((res) => {
+          const eventData = [];
+          for(const key in res){
+              if(res.hasOwnProperty(key)){
+                eventData.push({...res[key], id: key})
+              }
+          }
+          return eventData;
+      }))
+     
+  }
+
 
   
 

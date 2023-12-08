@@ -1,45 +1,53 @@
 <div class="card card-primary ">
     <div class="card-header"> {{eventName}} Feedback Form</div>
-<div class="main-area">
-   <div class="content-area">
-       <div class="container">
-           <div class="row">
-               <div class="pt-5 px-4">
+    <div class="main-area">
+        <div class="content-area">
+            <div class="container">
+                <div class="row">
+                    <div class="pt-5 px-4">
 
-                   <h4 class="text-primary pb-3 ">Student Info</h4> 
+                        <h4 class="text-primary pb-3 ">Student Info</h4>
 
-                   <div class="form-group">
-                       <label for="">StudentID</label>
-                       <input type="text" name="studentID" [(ngModel)]="userModel.studentID" #studentID="ngModel" class="form-control"
-                           readonly ngModel>
-                   </div>
+                        <form #studentInfoForm="ngForm">
+                            <div class="form-group">
+                                <label for="">StudentID</label>
+                                <input type="text" name="studentID" [(ngModel)]="userModel2.studentID"
+                                    #studentID="ngModel" class="form-control" readonly ngModel>
+                            </div>
 
-                   <div class="form-group">
-                       <label for="">Full Name</label>
-                       <input type="text" name="studentName" [(ngModel)]="userModel.studentName" #studentName="ngModel" class="form-control"
-                           readonly ngModel>
-                   </div>
+                            <div class="form-group">
+                                <label for="">Full Name</label>
+                                <input type="text" name="studentName" [(ngModel)]="userModel2.studentName"
+                                    #studentName="ngModel" class="form-control" readonly ngModel>
+                            </div>
 
-                   <div class="form-group">
-                       <label for="">Faculty</label>
-                       <input type="text" name="faculty" [(ngModel)]="userModel.faculty" #faculty="ngModel" class="form-control"
-                           readonly ngModel>                      
-                   </div>
+                            <div class="form-group">
+                                <label for="">Faculty</label>
+                                <input type="text" name="faculty" [(ngModel)]="userModel2.faculty" #faculty="ngModel"
+                                    class="form-control" readonly ngModel>
+                            </div>
 
-                   <div class="form-group">
-                       <label for="">Campus</label>
-                       <input type="text" name="campus" [(ngModel)]="userModel.campus" #campus="ngModel" class="form-control"
-                           readonly ngModel>
-                   </div>
+                            <div class="form-group">
+                                <label for="">Campus</label>
+                                <input type="text" name="campus" [(ngModel)]="userModel2.campus" #campus="ngModel"
+                                    class="form-control" readonly ngModel>
+                            </div>
 
-                   <div class="pb-4 ">
-                       <a routerLink="/surveyform"> <button  class="btn btn-success"
-                           type="submit">Next</button></a>
-                   </div>
 
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
+
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer ">
+        <div class="pb-4 px-2 ">
+            <a routerLink="/surveyform"> <button  class="btn btn-success"
+                type="submit">Next</button></a>
+        </div>
+    </div>
 </div>

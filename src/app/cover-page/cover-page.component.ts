@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventServiceService } from '../service/event-service.service';
+import { eventData } from '../model/eventData';
 
 @Component({
   selector: 'app-cover-page',
@@ -21,6 +22,7 @@ export class CoverPageComponent implements OnInit {
   incrementedDate:any;
 
 
+  // userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate());
 
 
 

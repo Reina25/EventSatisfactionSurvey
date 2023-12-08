@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EventServiceService } from '../service/event-service.service';
 import { Responses } from '../model/responses';
+import { studentData } from '../model/studentData';
+import { eventData } from '../model/eventData';
 
 @Component({
   selector: 'app-survey-form',
@@ -21,6 +23,8 @@ export class SurveyFormComponent implements OnInit {
   submitted:boolean=false;
 
   userModel = new Responses(this.eventService,'','','','');
+  userModel2 = new studentData(this.eventService.getSavedStudentID(),this.eventService.getSavedStudentName(),this.eventService.getSavedFaculty(),this.eventService.getSavedCampus());
+  userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate())
 
   surveyForm: NgForm;
 

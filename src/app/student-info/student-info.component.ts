@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventServiceService } from '../service/event-service.service';
 import { Responses } from '../model/responses';
+import { studentData } from '../model/studentData';
 
 @Component({
   selector: 'app-student-info',
@@ -30,31 +31,33 @@ export class StudentInfoComponent implements OnInit {
 
   incrementedDate:any;
 
-  userModel = new Responses(this.eventService,'','','','');
+  userModel2 = new studentData(this.eventService.getSavedStudentID(),this.eventService.getSavedStudentName(),this.eventService.getSavedFaculty(),this.eventService.getSavedCampus());
   
 
 
 
   ngOnInit() {
+
+
     
     // get saved student and event data from local storage
-    this.studentID=this.eventService.getSavedStudentID();
+    // this.studentID=this.eventService.getSavedStudentID();
 
-    this.studentName = this.eventService.getSavedStudentName();
+    // this.studentName = this.eventService.getSavedStudentName();
 
-    this.eventID = this.eventService.getSavedEventID();
+    // this.eventID = this.eventService.getSavedEventID();
 
     this.eventName = this.eventService.getSavedEventName();
 
-    this.hash = this.eventService.getSavedHash();
+    // this.hash = this.eventService.getSavedHash();
    
-    this.faculty = this.eventService.getSavedFaculty();
+    // this.faculty = this.eventService.getSavedFaculty();
 
-    this.campus = this.eventService.getSavedCampus();
+    // this.campus = this.eventService.getSavedCampus();
 
-    this.eventDate=this.eventService.getSavedEventDate();
+    // this.eventDate=this.eventService.getSavedEventDate();
 
-    this.incrementedDate=this.eventService.getSavedEventDate2();
+    // this.incrementedDate=this.eventService.getSavedEventDate2();
 
   }
 
