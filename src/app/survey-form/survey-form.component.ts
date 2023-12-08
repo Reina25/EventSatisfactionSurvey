@@ -22,7 +22,7 @@ export class SurveyFormComponent implements OnInit {
   
   submitted:boolean=false;
 
-  // userModel = new Responses(this.eventService,'','','','');
+  userModel = new Responses(this.eventService,'','','','');
   // userModel2 = new studentData(this.eventService.getSavedStudentID(),this.eventService.getSavedStudentName(),this.eventService.getSavedFaculty(),this.eventService.getSavedCampus());
   // userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate())
 
