@@ -11,7 +11,9 @@
 </div>
 
 <div [class.d-none]="submitted" class="card card-primary">
-  <div [class.d-none]="submitted" class="card-header"> {{event.eventName}} Feedback Form</div>
+  <div [class.d-none]="submitted" class="card-header"> {{event.eventName}} Feedback Form
+    <div class="float-end ">{{event.eventDate| date : "mediumDate"}}</div>
+  </div>
   <div class="main-area">
     <div class="content-area">
 

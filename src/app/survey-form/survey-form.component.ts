@@ -73,8 +73,9 @@ ngOnInit() {
     eventID:this.eventService.getSavedEventID(),
     eventName:this.eventService.getSavedEventName(),
     eventDate:this.eventService.getSavedEventDate(),
-
   }
+
+
   this.studentName=this.student.studentName;
 
   // get the first name only from full name of student

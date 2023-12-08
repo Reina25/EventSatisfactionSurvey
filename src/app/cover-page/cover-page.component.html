@@ -1,5 +1,7 @@
 <div class="card card-primary">
-    <div class="card-header">  <h3> {{eventName}} Feedback Form </h3>
+    <div class="card-header">  <h3> {{event.eventName}} Feedback Form </h3>
+        <h6>{{event.eventDate| date : "mediumDate"}}</h6>
+
     </div>
         <div class="main-area">
             <div class="content-area">
@@ -8,9 +10,8 @@
     
                         <div class="pt-5 px-4">
     
-                            <h6>{{eventDate | date : "mediumDate"}}</h6>
     
-                            <h5>Hi! Would you mind taking 2 minutes to complete this form? It would be great if you can submit your response by {{incrementedDate | date : "mediumDate"}}. 
+                            <h5>Hi! Would you mind taking 2 minutes to complete this form? It would be great if you can submit your response by <span id="date2">{{incrementedDate | date : "mediumDate"}}</span>. 
                                 Thank you!</h5>
                             <div class="py-5">
                                 <a routerLink="/studentinfo"> <button  class="btn btn-primary"

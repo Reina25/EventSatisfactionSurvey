@@ -61,9 +61,12 @@ export class CheckInfoComponent implements OnInit {
 
     this.studentName = this.eventService.setStudentName(this.route.snapshot.queryParamMap.get("studentName"));
 
+    this.eventDate = this.eventService.setEventDate(this.eventDate);
+
     this.faculty = this.eventService.setFaculty(this.route.snapshot.queryParamMap.get("faculty"));
 
     this.campus = this.eventService.setCampus(this.route.snapshot.queryParamMap.get("campus"));
+
 
 
     // save student and event data from the set data above
@@ -80,6 +83,11 @@ export class CheckInfoComponent implements OnInit {
     this.faculty = this.eventService.saveFaculty();
 
     this.campus = this.eventService.saveCampus();
+
+    this.eventDate = this.eventService.saveEventDate();
+
+
+
 
     // undergo the md5 hashing
     const completeData: string = this.eventService.getStudentID() + this.eventService.getEventID() + this.salt;

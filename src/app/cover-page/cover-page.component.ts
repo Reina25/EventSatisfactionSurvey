@@ -17,9 +17,12 @@ export class CoverPageComponent implements OnInit {
 
   eventName:string;
 
-  eventDate=new Date();
+  eventDate:Date;
 
   incrementedDate:any;
+
+  event: eventData;
+
 
 
   // userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate());
@@ -28,11 +31,17 @@ export class CoverPageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.eventID=this.eventService.getSavedEventID(); 
+    this.event = {
+      eventID : this.eventService.getSavedEventID(),
+      eventName : this.eventService.getSavedEventName(),
+      eventDate : this.eventService.getSavedEventDate(),
+    };
 
-    this.eventName = this.eventService.getSavedEventName();
+    // this.eventID=this.eventService.getSavedEventID(); 
 
-    this.incrementedDate=this.eventService.addDays(this.eventDate,1);
+    // this.eventName = this.eventService.getSavedEventName();
+
+    this.incrementedDate=this.eventService.addDays(this.event.eventDate,1);
 
   }
 }

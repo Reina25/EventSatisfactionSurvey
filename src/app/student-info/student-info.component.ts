@@ -29,7 +29,8 @@ export class StudentInfoComponent implements OnInit {
 
   campus:string;
 
-  eventDate:any;
+  eventDate= new Date();
+  eventdate:string;
 
   incrementedDate:any;
 
@@ -52,11 +53,10 @@ export class StudentInfoComponent implements OnInit {
     }
 
     this.event = {
-      eventID:this.eventService.getSavedEventID(),
-      eventName:this.eventService.getSavedEventName(),
-      eventDate:this.eventService.getSavedEventDate(),
-
-    }
+      eventID : this.eventService.getSavedEventID(),
+      eventName : this.eventService.getSavedEventName(),
+      eventDate : this.eventService.getSavedEventDate(),
+    };
 
     // this.studentInfoForm.setValue({
       // studentID: this.eventService.getSavedStudentID(),
@@ -76,7 +76,6 @@ export class StudentInfoComponent implements OnInit {
 
     // this.eventID = this.eventService.getSavedEventID();
 
-    this.eventName = this.eventService.getSavedEventName();
 
     // this.hash = this.eventService.getSavedHash();
    
@@ -84,7 +83,6 @@ export class StudentInfoComponent implements OnInit {
 
     // this.campus = this.eventService.getSavedCampus();
 
-    // this.eventDate=this.eventService.getSavedEventDate();
 
     // this.incrementedDate=this.eventService.getSavedEventDate2();
 
