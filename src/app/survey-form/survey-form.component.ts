@@ -22,11 +22,14 @@ export class SurveyFormComponent implements OnInit {
   
   submitted:boolean=false;
 
-  userModel = new Responses(this.eventService,'','','','');
-  userModel2 = new studentData(this.eventService.getSavedStudentID(),this.eventService.getSavedStudentName(),this.eventService.getSavedFaculty(),this.eventService.getSavedCampus());
-  userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate())
+  // userModel = new Responses(this.eventService,'','','','');
+  // userModel2 = new studentData(this.eventService.getSavedStudentID(),this.eventService.getSavedStudentName(),this.eventService.getSavedFaculty(),this.eventService.getSavedCampus());
+  // userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate())
 
   surveyForm: NgForm;
+
+  student: studentData;
+  event: eventData;
 
   noShow:boolean=false;
 
@@ -55,10 +58,24 @@ export class SurveyFormComponent implements OnInit {
 ngOnInit() {
 
   // get saved student and event data from saved data in local storage
-  this.studentName=this.eventService.getSavedStudentName();
+  // this.studentName=this.eventService.getSavedStudentName();
 
-  this.eventName=this.eventService.getSavedEventName();
+  // this.eventName=this.eventService.getSavedEventName();
 
+  this.student = {
+    studentID: this.eventService.getSavedStudentID(),
+    studentName: this.eventService.getSavedStudentName(),
+    faculty: this.eventService.getSavedFaculty(),
+    campus: this.eventService.getSavedCampus(),
+  }
+
+  this.event = {
+    eventID:this.eventService.getSavedEventID(),
+    eventName:this.eventService.getSavedEventName(),
+    eventDate:this.eventService.getSavedEventDate(),
+
+  }
+  this.studentName=this.student.studentName;
 
   // get the first name only from full name of student
   this.studentFirstName=this.studentName.substring(0, this.studentName.indexOf(' '));

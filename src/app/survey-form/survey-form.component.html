@@ -11,7 +11,7 @@
 </div>
 
 <div [class.d-none]="submitted" class="card card-primary">
-  <div [class.d-none]="submitted" class="card-header"> {{eventName}} Feedback Form</div>
+  <div [class.d-none]="submitted" class="card-header"> {{event.eventName}} Feedback Form</div>
   <div class="main-area">
     <div class="content-area">
 
@@ -44,13 +44,13 @@
               <div [class.d-none]="!noShow">
                 <div class="form-group">
                   <label for="">StudentID</label>
-                  <input type="text" name="studentID" [(ngModel)]="userModel2.studentID" class="form-control " readonly
+                  <input type="text" name="studentID" [(ngModel)]="student.studentID" class="form-control " readonly
                     ngModel>
                 </div>
 
                 <div class="form-group">
                   <label for="">EventID</label>
-                  <input type="text" name="eventID" [(ngModel)]="userModel3.eventID" #eventID="ngModel"
+                  <input type="text" name="eventID" [(ngModel)]="event.eventID" #eventID="ngModel"
                     class="form-control " readonly ngModel>
 
 

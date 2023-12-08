@@ -2,11 +2,11 @@ import { EventServiceService } from "../service/event-service.service";
 
 export class Responses {
 
-    public studentID =this.eventservice.getSavedStudentID();
-    public eventID =this.eventservice.getSavedEventID();
-    public studentName =this.eventservice.getSavedStudentName();
-    public faculty =this.eventservice.getSavedFaculty();
-    public campus =this.eventservice.getSavedCampus();
+    // public studentID =this.eventservice.getSavedStudentID();
+    // public eventID =this.eventservice.getSavedEventID();
+    // public studentName =this.eventservice.getSavedStudentName();
+    // public faculty =this.eventservice.getSavedFaculty();
+    // public campus =this.eventservice.getSavedCampus();
 
     constructor(
        private eventservice : EventServiceService,

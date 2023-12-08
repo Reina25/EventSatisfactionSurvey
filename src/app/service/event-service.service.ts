@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { Responses } from '../model/responses';
+import { studentData } from '../model/studentData';
+import { eventData } from '../model/eventData';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +31,10 @@ export class EventServiceService {
   
   incrementedDate:any;
 
-  savedoption:any;
-
   surveyForm: NgForm;
+
+ 
+
 
 
   // sets and gets for student and event data
@@ -264,6 +267,8 @@ export class EventServiceService {
         }))
        
     }
+
+
 
 
     fetchEventData(){

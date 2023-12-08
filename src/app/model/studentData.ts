@@ -7,12 +7,17 @@ export class studentData {
     // public faculty =this.eventservice.getSavedFaculty();
     // public campus =this.eventservice.getSavedCampus();
 
+    public studentID: string;
+    public studentName: string;
+    public faculty: string;
+    public campus: string;
 
-    constructor(
-        public studentID: string,
-        public studentName: string,
-        public faculty: string,
-        public campus: string,
 
-    ) { }
+    // constructor(
+    //     public studentID: string,
+    //     public studentName: string,
+    //     public faculty: string,
+    //     public campus: string,
+
+    // ) { }
 }
