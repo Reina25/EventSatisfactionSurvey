@@ -1,7 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Responses } from '../model/responses';
 import { Observable } from 'rxjs';
 
 
@@ -36,15 +34,17 @@ export class EventServiceService {
   private apiFilled = 'YOUR_ENDPOINT_URL_HERE'; // Replace with student who filled the survey already api endpoint
 
 
-
-
+  // get student data from endpoint
   getStudentData(): Observable<any> {
     return this.http.get<any>(this.apiStudentData);
   }
 
+
+  // get event data from endpoint
   getEventData(): Observable<any> {
     return this.http.get<any>(this.apiEventData);
   }
+
 
   // submit student's response to database
   onSubmit(User: { studentID: string, eventID: string, radios1: string, radios2: string, radios3: string, suggestions: string }) {
@@ -233,10 +233,6 @@ export class EventServiceService {
   getSavedHash() {
     return localStorage.getItem('hash')
   }
-
-
-
-
 
 
 }
