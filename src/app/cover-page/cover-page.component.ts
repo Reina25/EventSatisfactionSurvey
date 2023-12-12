@@ -10,22 +10,11 @@ import { eventData } from '../model/eventData';
 export class CoverPageComponent implements OnInit {
   
   constructor(private eventService: EventServiceService){}
-  
 
-
-  eventID:string;
-
-  eventName:string;
-
-  eventDate:Date;
 
   incrementedDate:any;
 
   event: eventData;
-
-
-
-  // userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate());
 
 
 
@@ -37,9 +26,6 @@ export class CoverPageComponent implements OnInit {
       eventDate : this.eventService.getSavedEventDate(),
     };
 
-    // this.eventID=this.eventService.getSavedEventID(); 
-
-    // this.eventName = this.eventService.getSavedEventName();
 
     this.incrementedDate=this.eventService.addDays(this.event.eventDate,1);
 

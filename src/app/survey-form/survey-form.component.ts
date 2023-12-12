@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { EventServiceService } from '../service/event-service.service';
-import { Responses } from '../model/responses';
 import { studentData } from '../model/studentData';
 import { eventData } from '../model/eventData';
 
@@ -14,21 +12,12 @@ export class SurveyFormComponent implements OnInit {
 
   constructor(private eventService: EventServiceService){}
 
-  studentName:any;
-
   studentFirstName:any;
 
-  eventName:string;
-  
   submitted:boolean=false;
 
-  userModel = new Responses(this.eventService,'','','','');
-  // userModel2 = new studentData(this.eventService.getSavedStudentID(),this.eventService.getSavedStudentName(),this.eventService.getSavedFaculty(),this.eventService.getSavedCampus());
-  // userModel3 = new eventData(this.eventService.getSavedEventID(),this.eventService.getSavedEventName(),this.eventService.getSavedEventDate())
-
-  surveyForm: NgForm;
-
   student: studentData;
+
   event: eventData;
 
   noShow:boolean=false;
@@ -58,9 +47,6 @@ export class SurveyFormComponent implements OnInit {
 ngOnInit() {
 
   // get saved student and event data from saved data in local storage
-  // this.studentName=this.eventService.getSavedStudentName();
-
-  // this.eventName=this.eventService.getSavedEventName();
 
   this.student = {
     studentID: this.eventService.getSavedStudentID(),
@@ -76,10 +62,8 @@ ngOnInit() {
   }
 
 
-  this.studentName=this.student.studentName;
-
   // get the first name only from full name of student
-  this.studentFirstName=this.studentName.substring(0, this.studentName.indexOf(' '));
+  this.studentFirstName=this.student.studentName.substring(0, this.student.studentName.indexOf(' '));
 
 
  // save student response of survey (if changed)
@@ -139,7 +123,7 @@ saveSelection4(newValue: string) {
 }
 
 // submit student response and redirect to iConnect once done
-  onSubmit(User: { radios1:string,radios2:string,radios3:string,suggestions: string}){
+  onSubmit(User: {studentID:string, eventID:string, radios1:string,radios2:string,radios3:string,suggestions: string}){
     this.submitted=true;
    
     this.eventService.onSubmit(User);

@@ -1,5 +1,5 @@
 <div class="card card-primary ">
-    <div class="card-header"> 
+    <div class="card-header">
         {{event.eventName}}
         Feedback Form
         <div class="float-end ">{{event.eventDate| date : "mediumDate"}}</div>
@@ -15,8 +15,8 @@
                         <form #studentInfoForm="ngForm">
                             <div class="form-group">
                                 <label for="">StudentID</label>
-                                <input type="text" name="studentID" [(ngModel)]="student.studentID"
-                                    #studentID="ngModel" class="form-control" readonly ngModel>
+                                <input type="text" name="studentID" [(ngModel)]="student.studentID" #studentID="ngModel"
+                                    class="form-control" readonly ngModel>
                             </div>
 
                             <div class="form-group">
@@ -38,8 +38,8 @@
                             </div>
 
                             <div class="pb-3 ">
-                                <a routerLink="/surveyform"> <button  class="btn btn-success"
-                                    type="submit">Next</button></a>
+                                <a routerLink="/surveyform"> <button class="btn btn-success"
+                                        type="submit">Next</button></a>
                             </div>
 
                         </form>
@@ -50,5 +50,5 @@
             </div>
         </div>
     </div>
- 
+
 </div>

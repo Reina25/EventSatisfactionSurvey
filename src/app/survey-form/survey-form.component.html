@@ -25,8 +25,7 @@
             <h3 [class.d-none]="submitted" class="text-primary ">Event Satisfaction</h3>
 
             <small [class.d-none]="submitted">Hi, {{studentFirstName}}. When you submit this form, the owner will see
-              your
-              name and email address.</small>
+              your name and email address.</small>
 
           </div>
 
@@ -36,8 +35,6 @@
 
 
             <form #surveyForm="ngForm" (ngSubmit)="onSubmit(surveyForm.value)">
-              {{surveyForm.value | json}}
-
 
 
               <p> <span style="color: #ff0000; font-size: large;">* &nbsp;</span>Required</p>
@@ -224,8 +221,8 @@
                 <div class="px-3 col-3">
                   <button *ngIf="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid" class="btn btn-danger"
                     type="submit">Missing Fields</button>
-                  <button [class.d-none]="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid" class="btn btn-success" 
-                  type="submit">Submit</button>
+                  <button [class.d-none]="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid"
+                    class="btn btn-success" type="submit">Submit</button>
 
                 </div>
 

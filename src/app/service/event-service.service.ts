@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { Responses } from '../model/responses';
-import { studentData } from '../model/studentData';
-import { eventData } from '../model/eventData';
+
 
 @Injectable({
   providedIn: 'root'
@@ -138,7 +137,7 @@ export class EventServiceService {
 
 
   // submit student's response to database
-  onSubmit(User: {radios1:string,radios2:string, radios3:string,suggestions: string}){
+  onSubmit(User: {studentID:string , eventID:string , radios1:string , radios2:string , radios3:string , suggestions: string}){
 
     console.log(User);
     const headers = new HttpHeaders({'myHeader': 'BAUEventSurvey'});
@@ -224,32 +223,6 @@ export class EventServiceService {
         return localStorage.getItem('hash')
        }
 
-
- 
-      
-      
-      // fetchdata(){
-      //   this.http.get<{[key: string]:data}>(
-      //     'https://restcountries.com/v3.1/all'
-      //   )
-      //     .pipe(map((response) => {
-      //       const data = [];
-           
-      //       for(const key in response){
-      //         if(response.hasOwnProperty(key)){
-      //           data.push({...response[key], id:key})
-               
-    
-      //         }
-              
-      //       }
-      //       return data;
-      //     }))
-      //     .subscribe((data) => {
-      //       this.alldata=data;
-        
-      //     })
-      // }
 
       fetchStudentData(){
         const header = new HttpHeaders()

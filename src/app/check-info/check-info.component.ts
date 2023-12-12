@@ -43,12 +43,11 @@ export class CheckInfoComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.eventService.fetchStudentData();
-
     // to clear any saved data for new data to come 
     window.sessionStorage.clear();
 
     window.localStorage.clear();
+    
 
     // set student and event data from url parameters
     this.studentID = this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));
