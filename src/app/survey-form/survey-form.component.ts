@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventServiceService } from '../service/event-service.service';
 import { studentData } from '../model/studentData';
 import { eventData } from '../model/eventData';
+import { Responses } from '../model/responses';
 
 @Component({
   selector: 'app-survey-form',
@@ -19,6 +20,8 @@ export class SurveyFormComponent implements OnInit {
   student: studentData;
 
   event: eventData;
+
+  studentResponse: Responses;
 
   noShow:boolean=false;
 
@@ -62,6 +65,7 @@ ngOnInit() {
   }
 
 
+
   // get the first name only from full name of student
   this.studentFirstName=this.student.studentName.substring(0, this.student.studentName.indexOf(' '));
 
@@ -98,6 +102,8 @@ ngOnInit() {
     this.saveSelection4(this.selectedOption4);
    
   }
+
+
 
 }
 

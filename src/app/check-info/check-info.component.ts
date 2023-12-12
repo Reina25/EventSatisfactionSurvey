@@ -41,12 +41,21 @@ export class CheckInfoComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService) { }
 
 
+
+
   ngOnInit() {
 
     // to clear any saved data for new data to come 
     window.sessionStorage.clear();
 
     window.localStorage.clear();
+
+
+    // fetch student data and event data from id
+    this.fetchStudentData();
+    
+    this.fetchEventData();
+
 
 
     // set student and event data from url parameters
@@ -113,6 +122,34 @@ export class CheckInfoComponent implements OnInit {
 
 
 
+  }
+
+  fetchStudentData() {
+    this.eventService.getStudentData().subscribe(
+      (data: any) => {
+        this.studentID = data.studentId;
+        this.studentName = data.studentName;
+        this.campus = data.campus;
+        this.faculty = data.faculty;
+      },
+      (error: any) => {
+        console.error('Error fetching student data:', error);
+      }
+    );
+  }
+
+
+  fetchEventData() {
+    this.eventService.getEventData().subscribe(
+      (data: any) => {
+        this.eventID = data.eventId;
+        this.eventName = data.eventName;
+        this.eventDate = data.eventDate;
+      },
+      (error: any) => {
+        console.error('Error fetching event data:', error);
+      }
+    );
   }
 
 }

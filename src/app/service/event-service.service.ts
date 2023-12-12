@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Responses } from '../model/responses';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Responses } from '../model/responses';
 })
 export class EventServiceService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   eventID: string;
 
@@ -26,10 +27,37 @@ export class EventServiceService {
   hash: string;
 
   eventDate: any;
-  
-  incrementedDate: any;
- 
 
+  incrementedDate: any;
+
+  private apiSubmit = ""; // Replace with submit api endpoint
+  private apiStudentData = 'YOUR_ENDPOINT_URL_HERE'; // Replace with student api endpoint
+  private apiEventData = 'YOUR_ENDPOINT_URL_HERE'; // Replace with event api endpoint
+  private apiFilled = 'YOUR_ENDPOINT_URL_HERE'; // Replace with student who filled the survey already api endpoint
+
+
+
+
+  getStudentData(): Observable<any> {
+    return this.http.get<any>(this.apiStudentData);
+  }
+
+  getEventData(): Observable<any> {
+    return this.http.get<any>(this.apiEventData);
+  }
+
+  // submit student's response to database
+  onSubmit(User: { studentID: string, eventID: string, radios1: string, radios2: string, radios3: string, suggestions: string }) {
+
+    console.log(User);
+    const headers = new HttpHeaders({ 'myHeader': 'BAUEventSurvey' });
+    this.http.post<{ name: string }>(
+      'https://eventsurvey-a3ee1-default-rtdb.firebaseio.com/responses.json',
+      User, { headers: headers })
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
 
 
   // sets and gets for student and event data
@@ -41,7 +69,7 @@ export class EventServiceService {
 
   getEventID() {
     return this.eventID;
-  } 
+  }
 
   setEventName(eventName: string) {
     this.eventName = eventName;
@@ -51,7 +79,7 @@ export class EventServiceService {
 
   getEventName() {
     return this.eventName;
-  } 
+  }
 
   setEventDate(eventDate: any) {
     this.eventDate = eventDate;
@@ -61,7 +89,7 @@ export class EventServiceService {
 
   getEventDate() {
     return this.eventDate;
-  } 
+  }
 
   setEventDate2(incrementedDate: any) {
     this.incrementedDate = incrementedDate;
@@ -71,7 +99,7 @@ export class EventServiceService {
 
   getEventDate2() {
     return this.incrementedDate;
-  } 
+  }
 
   setStudentID(studentID: string) {
     this.studentID = studentID;
@@ -81,7 +109,7 @@ export class EventServiceService {
 
   getStudentID() {
     return this.studentID;
-  } 
+  }
 
   setStudentName(studentName: string) {
     this.studentName = studentName;
@@ -91,7 +119,7 @@ export class EventServiceService {
 
   getStudentName() {
     return this.studentName;
-  } 
+  }
 
   setFaculty(faculty: string) {
     this.faculty = faculty;
@@ -101,7 +129,7 @@ export class EventServiceService {
 
   getFaculty() {
     return this.faculty;
-  } 
+  }
 
   setCampus(campus: string) {
     this.campus = campus;
@@ -111,7 +139,7 @@ export class EventServiceService {
 
   getCampus() {
     return this.campus;
-  } 
+  }
 
   setHash(hash: string) {
     this.hash = hash;
@@ -121,7 +149,7 @@ export class EventServiceService {
 
   getHash() {
     return this.hash;
-  } 
+  }
 
 
   // increment event date by number of days (deadline for submitting the survey response)
@@ -132,133 +160,83 @@ export class EventServiceService {
   }
 
 
-  // submit student's response to database
-  onSubmit(User: {studentID: string, eventID: string, radios1: string, radios2: string, radios3: string, suggestions: string}){
-
-    console.log(User);
-    const headers = new HttpHeaders({'myHeader': 'BAUEventSurvey'});
-    this.http.post<{name: string}>(
-        'https://eventsurvey-a3ee1-default-rtdb.firebaseio.com/responses.json', 
-        User, {headers: headers})
-        .subscribe((res) => {
-            console.log(res);
-        });
-      }
-
   // save and get saved student and event data from local storage
 
-      saveStudentName(){
-       return localStorage.setItem('studentName', this.getStudentName());
-      }
+  saveStudentName() {
+    return localStorage.setItem('studentName', this.getStudentName());
+  }
 
-      getSavedStudentName(){
-       return localStorage.getItem('studentName')
-      }
+  getSavedStudentName() {
+    return localStorage.getItem('studentName')
+  }
 
-      saveStudentID(){
-        return localStorage.setItem('studentID', this.getStudentID());
-       }
- 
-       getSavedStudentID(){
-        return localStorage.getItem('studentID')
-       }
+  saveStudentID() {
+    return localStorage.setItem('studentID', this.getStudentID());
+  }
 
-       saveCampus(){
-        return localStorage.setItem('campus', this.getCampus());
-       }
- 
-       getSavedCampus(){
-        return localStorage.getItem('campus')
-       }
+  getSavedStudentID() {
+    return localStorage.getItem('studentID')
+  }
 
-       saveFaculty(){
-        return localStorage.setItem('faculty', this.getFaculty());
-       }
- 
-       getSavedFaculty(){
-        return localStorage.getItem('faculty')
-       }
+  saveCampus() {
+    return localStorage.setItem('campus', this.getCampus());
+  }
 
-       saveEventID(){
-        return localStorage.setItem('eventID', this.getEventID());
-       }
- 
-       getSavedEventID(){
-        return localStorage.getItem('eventID')
-       }
+  getSavedCampus() {
+    return localStorage.getItem('campus')
+  }
 
-       saveEventName(){
-        return localStorage.setItem('eventName', this.getEventName());
-       }
- 
-       getSavedEventName(){
-        return localStorage.getItem('eventName')
-       }
+  saveFaculty() {
+    return localStorage.setItem('faculty', this.getFaculty());
+  }
 
-       saveEventDate(){
-        return localStorage.setItem('eventDate', this.getEventDate());
-       }
- 
-       getSavedEventDate(){
-        return localStorage.getItem('eventDate')
-       }
+  getSavedFaculty() {
+    return localStorage.getItem('faculty')
+  }
 
-       saveEventDate2(){
-        return localStorage.setItem('eventDate2', this.getEventDate2());
-       }
- 
-       getSavedEventDate2(){
-        return localStorage.getItem('eventDate2')
-       }
+  saveEventID() {
+    return localStorage.setItem('eventID', this.getEventID());
+  }
 
-       saveHash(){
-        return localStorage.setItem('hash', this.getHash());
-       }
- 
-       getSavedHash(){
-        return localStorage.getItem('hash')
-       }
+  getSavedEventID() {
+    return localStorage.getItem('eventID')
+  }
 
+  saveEventName() {
+    return localStorage.setItem('eventName', this.getEventName());
+  }
 
-      fetchStudentData(){
-        const header = new HttpHeaders()
-  
-        return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/' + this.getSavedStudentID() + '.json', 
-        {'headers': header,})
-        .pipe(map((res) => {
-            const studentPersonalData = [];
-            for(const key in res){
-                if(res.hasOwnProperty(key)){
-                  studentPersonalData.push({...res[key], id: key})
-                }
-            }
-            return studentPersonalData;
-        }))
-       
-    }
+  getSavedEventName() {
+    return localStorage.getItem('eventName')
+  }
 
+  saveEventDate() {
+    return localStorage.setItem('eventDate', this.getEventDate());
+  }
 
+  getSavedEventDate() {
+    return localStorage.getItem('eventDate')
+  }
 
+  saveEventDate2() {
+    return localStorage.setItem('eventDate2', this.getEventDate2());
+  }
 
-    fetchEventData(){
-      const header = new HttpHeaders()
+  getSavedEventDate2() {
+    return localStorage.getItem('eventDate2')
+  }
 
-      return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/' + this.getSavedEventID() + '.json', 
-      {'headers': header,})
-      .pipe(map((res) => {
-          const eventData = [];
-          for(const key in res){
-              if(res.hasOwnProperty(key)){
-                eventData.push({...res[key], id: key})
-              }
-          }
-          return eventData;
-      }))
-     
+  saveHash() {
+    return localStorage.setItem('hash', this.getHash());
+  }
+
+  getSavedHash() {
+    return localStorage.getItem('hash')
   }
 
 
-  
 
-  
+
+
+
 }
