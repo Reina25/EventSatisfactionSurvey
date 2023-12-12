@@ -27,15 +27,15 @@ export class CheckInfoComponent implements OnInit {
 
   hash: any;
 
-  studentName:any;
+  studentName: any;
 
-  eventName:any;
+  eventName: any;
 
-  eventDate:any=new Date();
+  eventDate: any = new Date();
 
-  faculty:any;
+  faculty: any;
 
-  campus:any;
+  campus: any;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService) { }
@@ -47,7 +47,7 @@ export class CheckInfoComponent implements OnInit {
     window.sessionStorage.clear();
 
     window.localStorage.clear();
-    
+
 
     // set student and event data from url parameters
     this.studentID = this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));

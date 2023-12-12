@@ -24,12 +24,12 @@ export class StudentInfoComponent implements OnInit {
       studentName: this.eventService.getSavedStudentName(),
       faculty: this.eventService.getSavedFaculty(),
       campus: this.eventService.getSavedCampus(),
-    }
+    };
 
     this.event = {
-      eventID : this.eventService.getSavedEventID(),
-      eventName : this.eventService.getSavedEventName(),
-      eventDate : this.eventService.getSavedEventDate(),
+      eventID: this.eventService.getSavedEventID(),
+      eventName: this.eventService.getSavedEventName(),
+      eventDate: this.eventService.getSavedEventDate(),
     };
 
 

@@ -12,7 +12,7 @@ export class CoverPageComponent implements OnInit {
   constructor(private eventService: EventServiceService){}
 
 
-  incrementedDate:any;
+  incrementedDate: any;
 
   event: eventData;
 
@@ -21,13 +21,13 @@ export class CoverPageComponent implements OnInit {
   ngOnInit() {
 
     this.event = {
-      eventID : this.eventService.getSavedEventID(),
-      eventName : this.eventService.getSavedEventName(),
-      eventDate : this.eventService.getSavedEventDate(),
+      eventID: this.eventService.getSavedEventID(),
+      eventName: this.eventService.getSavedEventName(),
+      eventDate: this.eventService.getSavedEventDate(),
     };
 
 
-    this.incrementedDate=this.eventService.addDays(this.event.eventDate,1);
+    this.incrementedDate = this.eventService.addDays(this.event.eventDate,1);
 
   }
 }

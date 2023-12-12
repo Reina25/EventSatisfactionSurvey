@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { NgForm } from '@angular/forms';
 import { Responses } from '../model/responses';
 
 
@@ -12,26 +11,23 @@ export class EventServiceService {
 
   constructor(private http: HttpClient) {}
 
-  eventID:string;
+  eventID: string;
 
-  eventName:string;
+  eventName: string;
 
-  studentID:string;
+  studentID: string;
 
-  studentName:string;
+  studentName: string;
 
-  faculty:string;
+  faculty: string;
 
-  campus:string;
+  campus: string;
 
-  hash:string;
+  hash: string;
 
-  eventDate:any;
+  eventDate: any;
   
-  incrementedDate:any;
-
-  surveyForm: NgForm;
-
+  incrementedDate: any;
  
 
 
@@ -137,7 +133,7 @@ export class EventServiceService {
 
 
   // submit student's response to database
-  onSubmit(User: {studentID:string , eventID:string , radios1:string , radios2:string , radios3:string , suggestions: string}){
+  onSubmit(User: {studentID: string, eventID: string, radios1: string, radios2: string, radios3: string, suggestions: string}){
 
     console.log(User);
     const headers = new HttpHeaders({'myHeader': 'BAUEventSurvey'});
@@ -152,7 +148,7 @@ export class EventServiceService {
   // save and get saved student and event data from local storage
 
       saveStudentName(){
-       return localStorage.setItem('studentName',this.getStudentName());
+       return localStorage.setItem('studentName', this.getStudentName());
       }
 
       getSavedStudentName(){
@@ -160,7 +156,7 @@ export class EventServiceService {
       }
 
       saveStudentID(){
-        return localStorage.setItem('studentID',this.getStudentID());
+        return localStorage.setItem('studentID', this.getStudentID());
        }
  
        getSavedStudentID(){
@@ -168,7 +164,7 @@ export class EventServiceService {
        }
 
        saveCampus(){
-        return localStorage.setItem('campus',this.getCampus());
+        return localStorage.setItem('campus', this.getCampus());
        }
  
        getSavedCampus(){
@@ -184,7 +180,7 @@ export class EventServiceService {
        }
 
        saveEventID(){
-        return localStorage.setItem('eventID',this.getEventID());
+        return localStorage.setItem('eventID', this.getEventID());
        }
  
        getSavedEventID(){
@@ -192,7 +188,7 @@ export class EventServiceService {
        }
 
        saveEventName(){
-        return localStorage.setItem('eventName',this.getEventName());
+        return localStorage.setItem('eventName', this.getEventName());
        }
  
        getSavedEventName(){
@@ -200,7 +196,7 @@ export class EventServiceService {
        }
 
        saveEventDate(){
-        return localStorage.setItem('eventDate',this.getEventDate());
+        return localStorage.setItem('eventDate', this.getEventDate());
        }
  
        getSavedEventDate(){
@@ -208,7 +204,7 @@ export class EventServiceService {
        }
 
        saveEventDate2(){
-        return localStorage.setItem('eventDate2',this.getEventDate2());
+        return localStorage.setItem('eventDate2', this.getEventDate2());
        }
  
        getSavedEventDate2(){
@@ -216,7 +212,7 @@ export class EventServiceService {
        }
 
        saveHash(){
-        return localStorage.setItem('hash',this.getHash());
+        return localStorage.setItem('hash', this.getHash());
        }
  
        getSavedHash(){
@@ -227,8 +223,8 @@ export class EventServiceService {
       fetchStudentData(){
         const header = new HttpHeaders()
   
-        return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/'+this.getSavedStudentID()+'.json', 
-        {'headers' : header,})
+        return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/' + this.getSavedStudentID() + '.json', 
+        {'headers': header,})
         .pipe(map((res) => {
             const studentPersonalData = [];
             for(const key in res){
@@ -247,8 +243,8 @@ export class EventServiceService {
     fetchEventData(){
       const header = new HttpHeaders()
 
-      return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/'+this.getSavedEventID()+'.json', 
-      {'headers' : header,})
+      return this.http.get<{[key: string]: Responses}>('https://library-eff58-default-rtdb.firebaseio.com/responses/' + this.getSavedEventID() + '.json', 
+      {'headers': header,})
       .pipe(map((res) => {
           const eventData = [];
           for(const key in res){

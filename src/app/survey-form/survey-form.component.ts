@@ -123,8 +123,8 @@ saveSelection4(newValue: string) {
 }
 
 // submit student response and redirect to iConnect once done
-  onSubmit(User: {studentID:string, eventID:string, radios1:string,radios2:string,radios3:string,suggestions: string}){
-    this.submitted=true;
+  onSubmit(User: {studentID: string, eventID: string, radios1: string, radios2: string, radios3: string, suggestions: string}){
+    this.submitted = true;
    
     this.eventService.onSubmit(User);
 
