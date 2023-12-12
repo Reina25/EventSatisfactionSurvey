@@ -52,8 +52,8 @@
 
                 <div class="form-group">
                   <label for="">EventID</label>
-                  <input type="text" name="eventID" [(ngModel)]="event.eventID" #eventID="ngModel"
-                    class="form-control " readonly ngModel>
+                  <input type="text" name="eventID" [(ngModel)]="event.eventID" #eventID="ngModel" class="form-control "
+                    readonly ngModel>
 
 
                 </div>
@@ -217,9 +217,23 @@
 
 
 
+              <div class="row">
+                <div class="col-1 pe-5">
+                  <button class="btn btn-primary" routerLink="/studentinfo" type="button">Back</button>
+                </div>
+                <div class="px-3 col-3">
+                  <button *ngIf="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid" class="btn btn-danger"
+                    type="submit">Missing Fields</button>
+                  <button [class.d-none]="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid" class="btn btn-success" 
+                  type="submit">Submit</button>
+
+                </div>
 
 
-             
+
+              </div>
+
+
 
             </form>
 
@@ -230,21 +244,5 @@
       </div>
     </div>
   </div>
-  <div class="card-footer ">
-    <div class="row px-2">
-      <div class="col-1 pe-5">
-        <button class="btn btn-primary" routerLink="/studentinfo" type="button">Back</button>
-      </div>
 
-      <div class="px-3 col-3">
-        <button *ngIf="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid" class="btn btn-danger"
-          type="submit">Missing Fields</button>
-        <button [class.d-none]="surveyForm.form.invalid" [disabled]="surveyForm.form.invalid"
-          class="btn btn-success" type="submit">Submit</button>
-
-      </div>
-
-    </div>
-  
-  </div>
 </div>

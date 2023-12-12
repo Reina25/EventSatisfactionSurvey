@@ -138,7 +138,7 @@ export class EventServiceService {
 
 
   // submit student's response to database
-  onSubmit(User: {studentID:string, eventID:string, radios1:string,radios2:string, radios3:string,suggestions: string}){
+  onSubmit(User: {radios1:string,radios2:string, radios3:string,suggestions: string}){
 
     console.log(User);
     const headers = new HttpHeaders({'myHeader': 'BAUEventSurvey'});
