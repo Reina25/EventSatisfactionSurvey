@@ -64,6 +64,16 @@ ngOnInit() {
     eventDate:this.eventService.getSavedEventDate(),
   }
 
+  // this.studentResponse = {
+  //   radios1: this.selectedOption1,
+  //   radios2: this.selectedOption2,
+  //   radios3: this.selectedOption3,
+  //   suggestions: this.selectedOption4
+  // }
+
+
+
+
 
 
   // get the first name only from full name of student
@@ -72,6 +82,7 @@ ngOnInit() {
 
  // save student response of survey (if changed)
   this.savedOption1 = sessionStorage.getItem('selectedOption1');
+ 
 
   if (this.savedOption1) {
     this.selectedOption1 = this.savedOption1;
@@ -113,6 +124,7 @@ ngOnInit() {
 saveSelection1(newValue: string) {
   this.selectedOption1=newValue;
   sessionStorage.setItem('selectedOption1', this.selectedOption1);
+  console.log(this.studentResponse.radios1)
 }
 
 saveSelection2(newValue: string) {
@@ -133,6 +145,8 @@ saveSelection4(newValue: string) {
     this.submitted = true;
    
     this.eventService.onSubmit(User);
+
+    
 
     setTimeout(() => {
       window.location.href = 'https://icas.bau.edu.lb:8443/cas/login?service=https://mis.bau.edu.lb/web/v12/iconnectv12/cas/sso.aspx';

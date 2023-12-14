@@ -31,18 +31,18 @@ export class EventServiceService {
   incrementedDate: any;
 
   
-  private apiUrl = 'http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'; // Replace this with your API endpoint URL
+  // private apiUrl = 'http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'; // Replace this with your API endpoint URL
 
 
-  getData(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  }
+  // getData(): Observable<any[]> {
+  //   return this.http.get<any[]>(this.apiUrl);
+  // }
 
-  // getCountries(){
-  //   // return this.http.get('https://restcountries.com/v3.1/all'); 
-  //   return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'); 
+  getCountries(){
+    // return this.http.get('https://restcountries.com/v3.1/all'); 
+    return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'); 
 
-  //   }
+    }
 
   // getData(): Observable<studentData[]> {
   //   return this.http.get<studentData[]>('http://172.30.2.8:121/api/Student/stdid?stdid=202100579');

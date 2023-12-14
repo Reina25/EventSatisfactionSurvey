@@ -65,28 +65,28 @@ export class CheckInfoComponent implements OnInit {
 
   
 
-  fetchData(): void {
-    this.eventService.getData()
-      .subscribe(
-        (response) => {
-          this.data = response;
-          console.log('Data:', this.data);
-        },
-        (error) => {
-          console.error('Error fetching data:', error);
-        }
-      );
-  }
+  // fetchData(): void {
+  //   this.eventService.getData()
+  //     .subscribe(
+  //       (response) => {
+  //         this.data = response;
+  //         console.log('Data:', this.data);
+  //       },
+  //       (error) => {
+  //         console.error('Error fetching data:', error);
+  //       }
+  //     );
+  // }
 
 
   ngOnInit() {
 
-    this.fetchData();
+    // this.fetchData();
 
 
-//     this.eventService.getCountries().subscribe((data)=>{
-//       this.countryData = data;
-// });
+    this.eventService.getCountries().subscribe((data)=>{
+      this.countryData = data;
+});
 
     // to clear any saved data for new data to come 
     window.sessionStorage.clear();
