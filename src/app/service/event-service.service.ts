@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { studentData } from '../model/studentData';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -16,7 +18,7 @@ export class EventServiceService {
 
   studentID: string;
 
-  studentName: string;
+  fullName: string;
 
   faculty: string;
 
@@ -28,22 +30,32 @@ export class EventServiceService {
 
   incrementedDate: any;
 
-  private apiSubmit = ""; // Replace with submit api endpoint
-  private apiStudentData = 'YOUR_ENDPOINT_URL_HERE'; // Replace with student api endpoint
-  private apiEventData = 'YOUR_ENDPOINT_URL_HERE'; // Replace with event api endpoint
-  private apiFilled = 'YOUR_ENDPOINT_URL_HERE'; // Replace with student who filled the survey already api endpoint
+  
+  private apiUrl = 'http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'; // Replace this with your API endpoint URL
 
 
-  // get student data from endpoint
-  getStudentData(): Observable<any> {
-    return this.http.get<any>(this.apiStudentData);
+  getData(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
 
+  // getCountries(){
+  //   // return this.http.get('https://restcountries.com/v3.1/all'); 
+  //   return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'); 
 
-  // get event data from endpoint
-  getEventData(): Observable<any> {
-    return this.http.get<any>(this.apiEventData);
-  }
+  //   }
+
+  // getData(): Observable<studentData[]> {
+  //   return this.http.get<studentData[]>('http://172.30.2.8:121/api/Student/stdid?stdid=202100579');
+  // }
+
+  // getData(){
+  //   return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=202100579'); 
+  //   }
+
+  // getData(): Observable<studentData[]> {
+  //   return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=202100579').pipe( map((res:any) => res.photos.photo));
+  // }
+ 
 
 
   // submit student's response to database
@@ -112,13 +124,13 @@ export class EventServiceService {
   }
 
   setStudentName(studentName: string) {
-    this.studentName = studentName;
+    this.fullName = studentName;
     return studentName;
   }
 
 
   getStudentName() {
-    return this.studentName;
+    return this.fullName;
   }
 
   setFaculty(faculty: string) {

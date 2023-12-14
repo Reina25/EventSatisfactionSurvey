@@ -11,6 +11,8 @@
                     <div class="pt-5 px-4">
 
                         <h4 class="text-primary pb-3 ">Student Info</h4>
+                        {{fullName}}
+
 
                         <form #studentInfoForm="ngForm">
                             <div class="form-group">
@@ -21,7 +23,7 @@
 
                             <div class="form-group">
                                 <label for="">Full Name</label>
-                                <input type="text" name="studentName" [(ngModel)]="student.studentName"
+                                <input type="text" name="studentName" [(ngModel)]="student.fullName"
                                     #studentName="ngModel" class="form-control" readonly ngModel>
                             </div>
 

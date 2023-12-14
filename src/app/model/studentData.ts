@@ -1,9 +1,9 @@
 
-export class studentData {
+export interface  studentData {
 
-    public studentID: string;
-    public studentName: string;
-    public faculty: string;
-    public campus: string;
+     studentID: string;
+     fullName: string;
+     faculty: string;
+     campus: string;
 
 }

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EventServiceService } from '../service/event-service.service';
 import { Md5 } from 'ts-md5';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { studentData } from '../model/studentData';
 
 @Component({
   selector: 'app-check-info',
@@ -27,7 +31,7 @@ export class CheckInfoComponent implements OnInit {
 
   hash: any;
 
-  studentName: any;
+  fullName: any;
 
   eventName: any;
 
@@ -37,13 +41,52 @@ export class CheckInfoComponent implements OnInit {
 
   campus: any;
 
+  // allData: studentData[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService) { }
+  student: studentData;
+  errorMessage!: string;
+
+  allData = null;
+
+  countryData = null;
 
 
+  constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService, private http: HttpClient) { }
+
+  // getData() {
+  //   this.eventService.getData().subscribe(data => {
+  //     this.allData = data;
+  //   });
+  // }
+
+  data: any[] = [];
+
+
+
+  
+
+  fetchData(): void {
+    this.eventService.getData()
+      .subscribe(
+        (response) => {
+          this.data = response;
+          console.log('Data:', this.data);
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+  }
 
 
   ngOnInit() {
+
+    this.fetchData();
+
+
+//     this.eventService.getCountries().subscribe((data)=>{
+//       this.countryData = data;
+// });
 
     // to clear any saved data for new data to come 
     window.sessionStorage.clear();
@@ -52,14 +95,13 @@ export class CheckInfoComponent implements OnInit {
 
 
     // fetch student data and event data from id
-    this.fetchStudentData();
     
-    this.fetchEventData();
-
 
 
     // set student and event data from url parameters
-    this.studentID = this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));
+    this.eventID = this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));
+
+  
 
     this.eventID = this.eventService.setEventID(this.route.snapshot.queryParamMap.get("eventID"));
 
@@ -67,17 +109,14 @@ export class CheckInfoComponent implements OnInit {
 
     this.eventName = this.eventService.setEventName(this.route.snapshot.queryParamMap.get("eventName"));
 
-    this.studentName = this.eventService.setStudentName(this.route.snapshot.queryParamMap.get("studentName"));
-
     this.eventDate = this.eventService.setEventDate(this.eventDate);
 
-    this.faculty = this.eventService.setFaculty(this.route.snapshot.queryParamMap.get("faculty"));
 
-    this.campus = this.eventService.setCampus(this.route.snapshot.queryParamMap.get("campus"));
 
 
 
     // save student and event data from the set data above
+
     this.studentID = this.eventService.saveStudentID();
 
     this.eventID = this.eventService.saveEventID();
@@ -86,13 +125,11 @@ export class CheckInfoComponent implements OnInit {
 
     this.eventName = this.eventService.saveEventName();
 
-    this.studentName = this.eventService.saveStudentName();
-
-    this.faculty = this.eventService.saveFaculty();
-
-    this.campus = this.eventService.saveCampus();
-
     this.eventDate = this.eventService.saveEventDate();
+
+    
+
+  
 
 
 
@@ -109,7 +146,26 @@ export class CheckInfoComponent implements OnInit {
     if (this.eventService.getHash() == this.hash2) {
 
 
+      // this.eventService.getData().subscribe({
+        
+      //   next: (data) => {
+      //     this.allData = data;
+      //     console.log(this.allData);
+      //   },
+      //   error: (error) => {
+      //     this.errorMessage = error;
+      //   },
+      // });
+
+
+      // this.eventService.getData().subscribe((data)=>{
+      //   this.allData = data;
+      //  });
+
+
       if (this.eventService.getStudentID() == '321') {
+
+
         this.router.navigate(['/formsubmitted']);
 
       } else {
@@ -124,32 +180,42 @@ export class CheckInfoComponent implements OnInit {
 
   }
 
-  fetchStudentData() {
-    this.eventService.getStudentData().subscribe(
-      (data: any) => {
-        this.studentID = data.studentId;
-        this.studentName = data.studentName;
-        this.campus = data.campus;
-        this.faculty = data.faculty;
-      },
-      (error: any) => {
-        console.error('Error fetching student data:', error);
-      }
-    );
-  }
+  // fetchdata(){
+  //   this.http.get<{[key: string]:studentData}>(
+  //     'http://172.30.2.8:121/api/Student/stdid?stdid=202100579'
+ 
+  //   )
+  //     .pipe(map((response) => {
+  //       const data = [];
+       
+  //       for(const key in response){
+  //         if(response.hasOwnProperty(key)){
+  //           data.push({...response[key], id:key})
+           
+
+  //         }
+          
+  //       }
+  //       return data;
+  //     }))
+  //     .subscribe((data) => {
+  //       this.alldata=data;
+        
+    
+  //     })
+  // }
 
 
-  fetchEventData() {
-    this.eventService.getEventData().subscribe(
-      (data: any) => {
-        this.eventID = data.eventId;
-        this.eventName = data.eventName;
-        this.eventDate = data.eventDate;
-      },
-      (error: any) => {
-        console.error('Error fetching event data:', error);
-      }
-    );
-  }
+ 
+
+
+ 
+
+
+
+
+
+
+
 
 }

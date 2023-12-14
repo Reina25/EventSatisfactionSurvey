@@ -53,7 +53,7 @@ ngOnInit() {
 
   this.student = {
     studentID: this.eventService.getSavedStudentID(),
-    studentName: this.eventService.getSavedStudentName(),
+    fullName: this.eventService.getSavedStudentName(),
     faculty: this.eventService.getSavedFaculty(),
     campus: this.eventService.getSavedCampus(),
   }
@@ -67,7 +67,7 @@ ngOnInit() {
 
 
   // get the first name only from full name of student
-  this.studentFirstName=this.student.studentName.substring(0, this.student.studentName.indexOf(' '));
+  this.studentFirstName=this.student.fullName.substring(0, this.student.fullName.indexOf(' '));
 
 
  // save student response of survey (if changed)
