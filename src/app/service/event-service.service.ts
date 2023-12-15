@@ -30,31 +30,20 @@ export class EventServiceService {
 
   incrementedDate: any;
 
-  
-  // private apiUrl = 'http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'; // Replace this with your API endpoint URL
+ 
 
-
-  // getData(): Observable<any[]> {
-  //   return this.http.get<any[]>(this.apiUrl);
-  // }
-
-  getCountries(){
-    // return this.http.get('https://restcountries.com/v3.1/all'); 
+  getStudentData(){
     return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'); 
 
+
+    
     }
 
-  // getData(): Observable<studentData[]> {
-  //   return this.http.get<studentData[]>('http://172.30.2.8:121/api/Student/stdid?stdid=202100579');
-  // }
+    getStudentData2(): Observable<any> {
+      return this.http.get<any>("http://172.30.2.8:121/api/Student/stdid?stdid=e20110406");
+    }
 
-  // getData(){
-  //   return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=202100579'); 
-  //   }
 
-  // getData(): Observable<studentData[]> {
-  //   return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=202100579').pipe( map((res:any) => res.photos.photo));
-  // }
  
 
 

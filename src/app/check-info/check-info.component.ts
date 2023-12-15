@@ -41,52 +41,59 @@ export class CheckInfoComponent implements OnInit {
 
   campus: any;
 
-  // allData: studentData[] = [];
 
   student: studentData;
-  errorMessage!: string;
 
-  allData = null;
 
-  countryData = null;
+
 
 
   constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService, private http: HttpClient) { }
 
-  // getData() {
-  //   this.eventService.getData().subscribe(data => {
-  //     this.allData = data;
-  //   });
-  // }
-
-  data: any[] = [];
 
 
 
-  
+  private studentData: any = {}; // Define an object to store student data
 
-  // fetchData(): void {
-  //   this.eventService.getData()
-  //     .subscribe(
-  //       (response) => {
-  //         this.data = response;
-  //         console.log('Data:', this.data);
-  //       },
-  //       (error) => {
-  //         console.error('Error fetching data:', error);
-  //       }
-  //     );
-  // }
+  private fetchdata() {
+    this.http.get<any>(
+      'http://172.30.2.8:121/api/Student/stdid?stdid='+this.eventService.getStudentID()
+    )
+      .subscribe((response) => {
+       
+        const student = response[0]; 
+
+     
+        this.studentData.pidm = student.pidm;
+        this.studentData.studentID = student.studentID;
+        this.studentData.fullName = student.fullName;
+        this.studentData.faculty = student.faculty;
+        this.studentData.campus = student.campus;
+        this.studentData.program = student.program;
+
+   
+
+        this.fullName = this.eventService.setStudentName(this.studentData.fullName);
+        this.fullName = this.eventService.saveStudentName();
+
+        this.faculty = this.eventService.setFaculty(this.studentData.faculty);
+        this.faculty = this.eventService.saveFaculty();
+
+        this.campus = this.eventService.setCampus(this.studentData.campus);
+        this.campus = this.eventService.saveCampus();
+
+
+        this.fullName = this.studentData.fullName;
+
+
+      });
+  }
+
 
 
   ngOnInit() {
 
-    // this.fetchData();
 
-
-    this.eventService.getCountries().subscribe((data)=>{
-      this.countryData = data;
-});
 
     // to clear any saved data for new data to come 
     window.sessionStorage.clear();
@@ -94,14 +101,12 @@ export class CheckInfoComponent implements OnInit {
     window.localStorage.clear();
 
 
-    // fetch student data and event data from id
-    
+
 
 
     // set student and event data from url parameters
-    this.eventID = this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));
+    this.studentID = this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));
 
-  
 
     this.eventID = this.eventService.setEventID(this.route.snapshot.queryParamMap.get("eventID"));
 
@@ -110,6 +115,8 @@ export class CheckInfoComponent implements OnInit {
     this.eventName = this.eventService.setEventName(this.route.snapshot.queryParamMap.get("eventName"));
 
     this.eventDate = this.eventService.setEventDate(this.eventDate);
+
+
 
 
 
@@ -127,9 +134,9 @@ export class CheckInfoComponent implements OnInit {
 
     this.eventDate = this.eventService.saveEventDate();
 
-    
 
-  
+
+
 
 
 
@@ -145,22 +152,8 @@ export class CheckInfoComponent implements OnInit {
 
     if (this.eventService.getHash() == this.hash2) {
 
+      this.fetchdata();
 
-      // this.eventService.getData().subscribe({
-        
-      //   next: (data) => {
-      //     this.allData = data;
-      //     console.log(this.allData);
-      //   },
-      //   error: (error) => {
-      //     this.errorMessage = error;
-      //   },
-      // });
-
-
-      // this.eventService.getData().subscribe((data)=>{
-      //   this.allData = data;
-      //  });
 
 
       if (this.eventService.getStudentID() == '321') {
@@ -180,36 +173,13 @@ export class CheckInfoComponent implements OnInit {
 
   }
 
-  // fetchdata(){
-  //   this.http.get<{[key: string]:studentData}>(
-  //     'http://172.30.2.8:121/api/Student/stdid?stdid=202100579'
- 
-  //   )
-  //     .pipe(map((response) => {
-  //       const data = [];
-       
-  //       for(const key in response){
-  //         if(response.hasOwnProperty(key)){
-  //           data.push({...response[key], id:key})
-           
-
-  //         }
-          
-  //       }
-  //       return data;
-  //     }))
-  //     .subscribe((data) => {
-  //       this.alldata=data;
-        
-    
-  //     })
-  // }
 
 
- 
 
 
- 
+
+
+
 
 
 
