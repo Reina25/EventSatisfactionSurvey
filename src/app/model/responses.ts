@@ -1,10 +1,10 @@
 
 export class Responses {
 
-    public radios1: string;
-    public radios2: string;
-    public radios3: string;
-    public suggestions: string;
+    public answer1: string;
+    public answer2: string;
+    public answer3: string;
+    public answer4: string;
 
 
 }

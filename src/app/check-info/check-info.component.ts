@@ -31,18 +31,9 @@ export class CheckInfoComponent implements OnInit {
 
   hash: any;
 
-  fullName: any;
-
-  eventName: any;
-
-  eventDate: any = new Date();
-
-  faculty: any;
-
-  campus: any;
+  isFilled: boolean;
 
 
-  student: studentData;
 
 
 
@@ -51,47 +42,39 @@ export class CheckInfoComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService, private http: HttpClient) { }
 
 
-
-
-  private studentData: any = {}; // Define an object to store student data
-
-  private fetchdata() {
+  fetchFilled() {
     this.http.get<any>(
-      'http://172.30.2.8:121/api/Student/stdid?stdid='+this.eventService.getStudentID()
+      '   http://172.30.2.8:121/api/EventSurveyResponses/'+this.eventService.getEventID()+'/'+this.eventService.getStudentID()
     )
       .subscribe((response) => {
-       
-        const student = response[0]; 
-
-     
-        this.studentData.pidm = student.pidm;
-        this.studentData.studentID = student.studentID;
-        this.studentData.fullName = student.fullName;
-        this.studentData.faculty = student.faculty;
-        this.studentData.campus = student.campus;
-        this.studentData.program = student.program;
-
-   
-
-        this.fullName = this.eventService.setStudentName(this.studentData.fullName);
-        this.fullName = this.eventService.saveStudentName();
-
-        this.faculty = this.eventService.setFaculty(this.studentData.faculty);
-        this.faculty = this.eventService.saveFaculty();
-
-        this.campus = this.eventService.setCampus(this.studentData.campus);
-        this.campus = this.eventService.saveCampus();
 
 
-        this.fullName = this.studentData.fullName;
+        if (response.length === 0) {
+          this.isFilled = false;
+          console.log('EMPTY');
+          this.eventService.fetchStudentData();
+          this.eventService.fetchEventData();
+          this.router.navigate(['/coverpage']);
+
+
+        }else if (response.length !==0){
+          this.isFilled = true;
+          console.log("FILLED");
+          this.router.navigate(['/formsubmitted']);
+
+        }else{
+          console.log("ERROR");
+          this.router.navigate(['/pagenotfound']);
+        }
+          
 
 
       });
   }
 
 
-
   ngOnInit() {
+
 
 
 
@@ -101,21 +84,12 @@ export class CheckInfoComponent implements OnInit {
     window.localStorage.clear();
 
 
-
-
-
     // set student and event data from url parameters
     this.studentID = this.eventService.setStudentID(this.route.snapshot.queryParamMap.get("studentID"));
-
 
     this.eventID = this.eventService.setEventID(this.route.snapshot.queryParamMap.get("eventID"));
 
     this.hash = this.eventService.setHash(this.route.snapshot.queryParamMap.get("hash"));
-
-    this.eventName = this.eventService.setEventName(this.route.snapshot.queryParamMap.get("eventName"));
-
-    this.eventDate = this.eventService.setEventDate(this.eventDate);
-
 
 
 
@@ -129,11 +103,6 @@ export class CheckInfoComponent implements OnInit {
     this.eventID = this.eventService.saveEventID();
 
     this.hash = this.eventService.saveHash();
-
-    this.eventName = this.eventService.saveEventName();
-
-    this.eventDate = this.eventService.saveEventDate();
-
 
 
 
@@ -150,20 +119,14 @@ export class CheckInfoComponent implements OnInit {
     this.hash2 = this.md5.end();
 
 
+
+
     if (this.eventService.getHash() == this.hash2) {
 
-      this.fetchdata();
+      // fetch student data and event data if hashing was success
 
+      this.fetchFilled();
 
-
-      if (this.eventService.getStudentID() == '321') {
-
-
-        this.router.navigate(['/formsubmitted']);
-
-      } else {
-        this.router.navigate(['/coverpage']);
-      }
 
     } else {
       this.router.navigate(['/pagenotfound']);

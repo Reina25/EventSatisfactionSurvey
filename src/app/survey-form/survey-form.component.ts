@@ -13,9 +13,9 @@ export class SurveyFormComponent implements OnInit {
 
   constructor(private eventService: EventServiceService){}
 
-  studentFirstName:any;
+  studentFirstName: any;
 
-  submitted:boolean=false;
+  submitted:boolean = false;
 
   student: studentData;
 
@@ -23,7 +23,7 @@ export class SurveyFormComponent implements OnInit {
 
   studentResponse: Responses;
 
-  noShow:boolean=false;
+  noShow: boolean = false;
 
 
   q1:string="1. How would you rate your overall experience of the event?";
@@ -64,12 +64,6 @@ ngOnInit() {
     eventDate:this.eventService.getSavedEventDate(),
   }
 
-  // this.studentResponse = {
-  //   radios1: this.selectedOption1,
-  //   radios2: this.selectedOption2,
-  //   radios3: this.selectedOption3,
-  //   suggestions: this.selectedOption4
-  // }
 
 
 
@@ -82,7 +76,6 @@ ngOnInit() {
 
  // save student response of survey (if changed)
   this.savedOption1 = sessionStorage.getItem('selectedOption1');
- 
 
   if (this.savedOption1) {
     this.selectedOption1 = this.savedOption1;
@@ -124,7 +117,6 @@ ngOnInit() {
 saveSelection1(newValue: string) {
   this.selectedOption1=newValue;
   sessionStorage.setItem('selectedOption1', this.selectedOption1);
-  console.log(this.studentResponse.radios1)
 }
 
 saveSelection2(newValue: string) {
@@ -141,7 +133,7 @@ saveSelection4(newValue: string) {
 }
 
 // submit student response and redirect to iConnect once done
-  onSubmit(User: {studentID: string, eventID: string, radios1: string, radios2: string, radios3: string, suggestions: string}){
+  onSubmit(User: {studentID: string, eventID: number, answer1: string, answer2: string, answer3: string, answer4: string}){
     this.submitted = true;
    
     this.eventService.onSubmit(User);

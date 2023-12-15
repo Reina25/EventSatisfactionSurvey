@@ -5,6 +5,7 @@ import { eventData } from '../model/eventData';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-student-info',
@@ -19,11 +20,11 @@ export class StudentInfoComponent implements OnInit {
 
   event: eventData;
 
-  alldata: studentData[] =[];
-
   studentData: any;
 
   fullName: string;
+
+  eventDateFormatted: any;
   
 
   ngOnInit() {
@@ -43,6 +44,8 @@ export class StudentInfoComponent implements OnInit {
       eventName: this.eventService.getSavedEventName(),
       eventDate: this.eventService.getSavedEventDate(),
     };
+
+
 
 
   }

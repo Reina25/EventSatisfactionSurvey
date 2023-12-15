@@ -12,48 +12,120 @@ export class EventServiceService {
 
   constructor(private http: HttpClient) { }
 
-  eventID: string;
+  eventID: any;
 
-  eventName: string;
+  eventName: any;
 
-  studentID: string;
-
-  fullName: string;
-
-  faculty: string;
-
-  campus: string;
-
-  hash: string;
-
-  eventDate: any;
+  startDate: any;
 
   incrementedDate: any;
 
- 
-
-  getStudentData(){
-    return this.http.get('http://172.30.2.8:121/api/Student/stdid?stdid=e20110406'); 
+  endDate: any;
 
 
-    
-    }
+  studentID: any;
 
-    getStudentData2(): Observable<any> {
-      return this.http.get<any>("http://172.30.2.8:121/api/Student/stdid?stdid=e20110406");
-    }
+  fullName: any;
+
+  faculty: any;
+
+  campus: any;
+
+  isFilled: boolean;
 
 
- 
+  hash: any;
+
+
+
+  private studentData: any = {}; 
+
+  private eventData: any = {}; 
+
+
+
+  fetchStudentData() {
+    this.http.get<any>(
+      'http://172.30.2.8:121/api/Student/'+ this.getStudentID()
+    )
+      .subscribe((response) => {
+       
+        const student = response[0]; 
+
+     
+        this.studentData.pidm = student.pidm;
+        this.studentData.studentID = student.studentID;
+        this.studentData.fullName = student.fullName;
+        this.studentData.faculty = student.faculty;
+        this.studentData.campus = student.campus;
+        this.studentData.program = student.program;
+
+   
+
+        this.fullName = this.setStudentName(this.studentData.fullName);
+        this.fullName = this.saveStudentName();
+
+        this.faculty = this.setFaculty(this.studentData.faculty);
+        this.faculty = this.saveFaculty();
+
+        this.campus = this.setCampus(this.studentData.campus);
+        this.campus = this.saveCampus();
+
+
+
+      });
+  }
+
+
+  fetchEventData() {
+    this.http.get<any>(
+      ' http://172.30.2.8:121/api/Events/'+this.getEventID()
+    )
+      .subscribe((response) => {
+
+
+        const eventData = response;
+
+        // Access individual properties:
+        this.eventData.seqID = eventData.seqID;
+        this.eventData.eventName = eventData.eventName;
+        this.eventData.startDate = eventData.startDate;
+        this.eventData.endDate = eventData.endDate;
+        this.eventData.venue = eventData.venue;
+        this.eventData.notes = eventData.notes;
+
+   
+
+        this.eventName = this.setEventName(this.eventData.eventName);
+        this.eventName = this.saveEventName();
+
+        this.startDate = this.setEventDate(this.eventData.startDate);
+        this.startDate = this.saveEventDate();
+
+        this.endDate = this.setEventDate2(this.eventData.endDate);
+        this.endDate = this.saveEventDate2();
+
+
+
+      });
+  }
+
+
+
+
+
+
+
+
 
 
   // submit student's response to database
-  onSubmit(User: { studentID: string, eventID: string, radios1: string, radios2: string, radios3: string, suggestions: string }) {
+  onSubmit(User: { studentID: string, eventID: number, answer1: string, answer2: string, answer3: string, answer4: string }) {
 
     console.log(User);
     const headers = new HttpHeaders({ 'myHeader': 'BAUEventSurvey' });
     this.http.post<{ name: string }>(
-      'https://eventsurvey-a3ee1-default-rtdb.firebaseio.com/responses.json',
+      'http://172.30.2.8:121/api/EventSurveyResponses',
       User, { headers: headers })
       .subscribe((res) => {
         console.log(res);
@@ -82,14 +154,14 @@ export class EventServiceService {
     return this.eventName;
   }
 
-  setEventDate(eventDate: any) {
-    this.eventDate = eventDate;
-    return eventDate;
+  setEventDate(startDate: any) {
+    this.startDate = startDate;
+    return startDate;
   }
 
 
   getEventDate() {
-    return this.eventDate;
+    return this.startDate;
   }
 
   setEventDate2(incrementedDate: any) {

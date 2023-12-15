@@ -37,6 +37,7 @@
             <form #surveyForm="ngForm" (ngSubmit)="onSubmit(surveyForm.value)">
 
 
+
               <p> <span style="color: #ff0000; font-size: large;">* &nbsp;</span>Required</p>
 
 
@@ -64,7 +65,7 @@
 
 
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q1" id="verysat1" value="Very satisfied"
+                  <input class="form-check-input" type="radio" name="answer1" id="verysat1" value="Very satisfied"
                     #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched" required
                     [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
                   <label class="form-check-label" for="verysat1">
@@ -72,7 +73,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q1" id="sat1" value="Satisfied" #radios1="ngModel"
+                  <input class="form-check-input" type="radio" name="answer1" id="sat1" value="Satisfied" #radios1="ngModel"
                     [class.is-invalid]="radios1.invalid && radios1.touched" required [(ngModel)]="selectedOption1"
                     (ngModelChange)="saveSelection1($event)">
                   <label class="form-check-label" for="sat1">
@@ -80,7 +81,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q1" id="neu1" value="Neutral" #radios1="ngModel"
+                  <input class="form-check-input" type="radio" name="answer1" id="neu1" value="Neutral" #radios1="ngModel"
                     [class.is-invalid]="radios1.invalid && radios1.touched" required [(ngModel)]="selectedOption1"
                     (ngModelChange)="saveSelection1($event)">
                   <label class="form-check-label" for="neu1">
@@ -88,7 +89,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q1" id="unsat1" value="Unsatisfied"
+                  <input class="form-check-input" type="radio" name="answer1" id="unsat1" value="Unsatisfied"
                     #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched" required
                     [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
                   <label class="form-check-label" for="unsat1">
@@ -96,7 +97,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q1" id="veryunsat1" value="Very Unsatisfied"
+                  <input class="form-check-input" type="radio" name="answer1" id="veryunsat1" value="Very Unsatisfied"
                     #radios1="ngModel" [class.is-invalid]="radios1.invalid && radios1.touched" required
                     [(ngModel)]="selectedOption1" (ngModelChange)="saveSelection1($event)">
                   <label class="form-check-label" for="veryunsat1">
@@ -116,7 +117,7 @@
 
 
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q2" id="verysat2" value="Very satisfied"
+                  <input class="form-check-input" type="radio" name="answer2" id="verysat2" value="Very satisfied"
                     #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required
                     [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
                   <label class="form-check-label" for="verysat2">
@@ -124,7 +125,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q2" id="sat2" value="Satisfied" #radios2="ngModel"
+                  <input class="form-check-input" type="radio" name="answer2" id="sat2" value="Satisfied" #radios2="ngModel"
                     [class.is-invalid]="radios2.invalid && radios2.touched" required [(ngModel)]="selectedOption2"
                     (ngModelChange)="saveSelection2($event)">
                   <label class="form-check-label" for="sat2">
@@ -132,7 +133,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q2" id="neu2" value="Neutral" #radios2="ngModel"
+                  <input class="form-check-input" type="radio" name="answer2" id="neu2" value="Neutral" #radios2="ngModel"
                     [class.is-invalid]="radios2.invalid && radios2.touched" required [(ngModel)]="selectedOption2"
                     (ngModelChange)="saveSelection2($event)">
                   <label class="form-check-label" for="neu2">
@@ -140,7 +141,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q2" id="unsat2" value="Unsatisfied"
+                  <input class="form-check-input" type="radio" name="answer2" id="unsat2" value="Unsatisfied"
                     #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required
                     [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
                   <label class="form-check-label" for="unsat2">
@@ -148,7 +149,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q2" id="veryunsat2" value="Very Unsatisfied"
+                  <input class="form-check-input" type="radio" name="answer2" id="veryunsat2" value="Very Unsatisfied"
                     #radios2="ngModel" [class.is-invalid]="radios2.invalid && radios2.touched" required
                     [(ngModel)]="selectedOption2" (ngModelChange)="saveSelection2($event)">
                   <label class="form-check-label" for="veryunsat2">
@@ -169,7 +170,7 @@
 
 
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q3" id="recommendyes" value="yes"
+                  <input class="form-check-input" type="radio" name="answer3" id="recommendyes" value="yes"
                     #radios3="ngModel" [class.is-invalid]="radios3.invalid && radios3.touched" required
                     [(ngModel)]="selectedOption3" (ngModelChange)="saveSelection3($event)">
                   <label class="form-check-label" for="recommendyes">
@@ -177,7 +178,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q3" id="recommendno" value="no" #radios3="ngModel"
+                  <input class="form-check-input" type="radio" name="answer3" id="recommendno" value="no" #radios3="ngModel"
                     [class.is-invalid]="radios3.invalid && radios3.touched" required [(ngModel)]="selectedOption3"
                     (ngModelChange)="saveSelection3($event)">
                   <label class="form-check-label" for="recommendno">
@@ -185,7 +186,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="q3" id="recommendmaybe" value="maybe"
+                  <input class="form-check-input" type="radio" name="answer3" id="recommendmaybe" value="maybe"
                     #radios3="ngModel" [class.is-invalid]="radios3.invalid && radios3.touched" required
                     [(ngModel)]="selectedOption3" (ngModelChange)="saveSelection3($event)">
                   <label class="form-check-label" for="recommendmaybe">
@@ -204,7 +205,7 @@
               <div id="question 4">
                 <div class="form-group">
                   <label>{{q4}}<span style="color: #ff0000; font-size: large;">* &nbsp;</span></label>
-                  <input type="text" name="q4" #suggestions="ngModel"
+                  <input type="text" name="answer4" #suggestions="ngModel"
                     [class.is-invalid]="suggestions.invalid && suggestions.touched" class="form-control"
                     [(ngModel)]="selectedOption4" (ngModelChange)="saveSelection4($event)" required>
                   <small class="text-danger" [class.d-none]="suggestions.untouched || suggestions.valid">This question
