@@ -41,10 +41,13 @@ export class CheckInfoComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService, private http: HttpClient) { }
 
+Fun1(){
+  this.router.navigate(['/coverpage']);
+}
 
   fetchFilled() {
     this.http.get<any>(
-      '   http://172.30.2.8:121/api/EventSurveyResponses/'+this.eventService.getEventID()+'/'+this.eventService.getStudentID()
+      'http://172.30.2.8:121/api/EventSurveyResponses/'+this.eventService.getEventID()+'/'+this.eventService.getStudentID()
     )
       .subscribe((response) => {
 
@@ -54,6 +57,7 @@ export class CheckInfoComponent implements OnInit {
           console.log('EMPTY');
           this.eventService.fetchStudentData();
           this.eventService.fetchEventData();
+ 
           this.router.navigate(['/coverpage']);
 
 
@@ -124,6 +128,7 @@ export class CheckInfoComponent implements OnInit {
     if (this.eventService.getHash() == this.hash2) {
 
       // fetch student data and event data if hashing was success
+
 
       this.fetchFilled();
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +22,21 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  // providers: [{
+  //   provide: APP_INITIALIZER,
+  //   useFactory: () => initializeApp,
+  //   multi: true
+  //  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+// export function initializeApp(http: HttpClient) {
+//   return (): Promise<any> =>
+//     firstValueFrom(
+//       http
+//         .get("https://someUrl.com/api/user")
+//         .pipe(tap(user => { ... }))
+//     );
+// }

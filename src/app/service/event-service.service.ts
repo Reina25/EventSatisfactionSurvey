@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { studentData } from '../model/studentData';
 import { map } from 'rxjs/operators';
+import { eventData } from '../model/eventData';
 
 
 @Injectable({
@@ -35,6 +36,8 @@ export class EventServiceService {
 
 
   hash: any;
+
+  event: eventData;
 
 
 
@@ -84,7 +87,8 @@ export class EventServiceService {
       .subscribe((response) => {
 
 
-        const eventData = response;
+        const eventData = response[0];
+
 
         // Access individual properties:
         this.eventData.seqID = eventData.seqID;
@@ -104,8 +108,6 @@ export class EventServiceService {
 
         this.endDate = this.setEventDate2(this.eventData.endDate);
         this.endDate = this.saveEventDate2();
-
-
 
       });
   }
