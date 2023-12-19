@@ -79,9 +79,12 @@ export class EventServiceService {
       });
   }
 
+  fetchQuote() {
+    return this.http.get( 'http://172.30.2.8:121/api/Events/'+this.getEventID());
+  }
 
   fetchEventData() {
-    this.http.get<any>(
+     this.http.get<any>(
       ' http://172.30.2.8:121/api/Events/'+this.getEventID()
     )
       .subscribe((response) => {
@@ -108,8 +111,10 @@ export class EventServiceService {
 
         this.endDate = this.setEventDate2(this.eventData.endDate);
         this.endDate = this.saveEventDate2();
+        console.log(response);
 
       });
+      
   }
 
 
