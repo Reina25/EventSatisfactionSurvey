@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { studentData } from '../model/studentData';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-check-info',
@@ -59,9 +60,10 @@ Fun1(){
           console.log('EMPTY');
           this.eventService.fetchStudentData();
           this.eventService.fetchEventData();
- 
-          this.router.navigate(['/coverpage']);
 
+          setTimeout(() => {
+            this.router.navigate(['/coverpage']);
+          }, 1000); 
 
         }else if (response.length !==0){
           this.isFilled = true;
