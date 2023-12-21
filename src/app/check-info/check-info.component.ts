@@ -42,9 +42,7 @@ export class CheckInfoComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private eventService: EventServiceService, private http: HttpClient) { }
 
-Fun1(){
-  this.router.navigate(['/coverpage']);
-}
+
 
   fetchFilled() {
 
